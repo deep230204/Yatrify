@@ -25,7 +25,7 @@ const Signup = () => {
 
     try {
       setIsSubmitting(true);
-      const response = await axios.post("http://localhost:5000/api/auth/signup", {
+      const response = await axios.post("https://yatrify-backend.onrender.com/api/auth/signup", {
         name,
         email,
         password,

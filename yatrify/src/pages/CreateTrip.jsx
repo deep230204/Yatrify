@@ -142,7 +142,7 @@ const CreateTrip = () => {
       setShowAiLoading(true);
 
       const response = await axios.post(
-        "http://localhost:5000/api/trip/generate",
+        "https://yatrify-backend.onrender.com/api/trip/generate",
         {
           destination: formData.destination,
           days: Number(formData.noOfDays),

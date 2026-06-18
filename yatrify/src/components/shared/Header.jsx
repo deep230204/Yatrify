@@ -42,7 +42,7 @@ const Header = () => {
     try {
       if (authData?.token) {
         await axios.post(
-          "http://localhost:5000/api/auth/logout",
+          "https://yatrify-backend.onrender.com/api/auth/logout",
           {},
           {
             headers: {

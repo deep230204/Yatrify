@@ -29,7 +29,7 @@ const ForgotPassword = () => {
     try {
       setIsSubmitting(true);
       const response = await axios.post(
-        "http://localhost:5000/api/auth/forgot-password/request-otp",
+        "https://yatrify-backend.onrender.com/api/auth/forgot-password/request-otp",
         { email }
       );
 
@@ -58,7 +58,7 @@ const ForgotPassword = () => {
     try {
       setIsSubmitting(true);
       const response = await axios.post(
-        "http://localhost:5000/api/auth/forgot-password/reset",
+        "https://yatrify-backend.onrender.com/api/auth/forgot-password/reset",
         { email, otp, password }
       );
 

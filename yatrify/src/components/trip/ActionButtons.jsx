@@ -32,7 +32,7 @@ const ActionButtons = ({ tripData: propTripData }) => {
     try {
       setIsSaving(true);
       const response = await axios.patch(
-        `http://localhost:5000/api/trip/${tripData._id}/save`,
+        `https://yatrify-backend.onrender.com/api/trip/${tripData._id}/save`,
         { isSaved: !tripData.isSaved },
         {
           headers: {
@@ -190,7 +190,7 @@ const ActionButtons = ({ tripData: propTripData }) => {
       setShowAiLoading(true);
 
       const response = await axios.post(
-        "http://localhost:5000/api/trip/generate",
+        "https://yatrify-backend.onrender.com/api/trip/generate",
         {
           destination: tripData.destination,
           days: Number(tripData.days),

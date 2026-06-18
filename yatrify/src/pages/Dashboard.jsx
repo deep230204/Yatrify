@@ -121,7 +121,7 @@ const Dashboard = () => {
 
     try {
       setIsLoading(true);
-      const response = await axios.get("http://localhost:5000/api/trip/mine", {
+      const response = await axios.get("https://yatrify-backend.onrender.com/api/trip/mine", {
         headers: authHeaders,
       });
 
@@ -230,7 +230,7 @@ const Dashboard = () => {
     try {
       setSavingTripId(trip._id);
       const response = await axios.patch(
-        `http://localhost:5000/api/trip/${trip._id}/save`,
+        `https://yatrify-backend.onrender.com/api/trip/${trip._id}/save`,
         { isSaved: !trip.isSaved },
         { headers: authHeaders }
       );
@@ -253,7 +253,7 @@ const Dashboard = () => {
     try {
       setSavingTripId(tripId);
       const response = await axios.patch(
-        `http://localhost:5000/api/trip/${tripId}`,
+        `https://yatrify-backend.onrender.com/api/trip/${tripId}`,
         { notes: noteDrafts[tripId] || "" },
         { headers: authHeaders }
       );
@@ -277,7 +277,7 @@ const Dashboard = () => {
     try {
       setUpdatingStatusTripId(tripId);
       const response = await axios.patch(
-        `http://localhost:5000/api/trip/${tripId}`,
+        `https://yatrify-backend.onrender.com/api/trip/${tripId}`,
         { status },
         { headers: authHeaders }
       );
@@ -305,7 +305,7 @@ const Dashboard = () => {
 
     try {
       setDeletingTripId(tripId);
-      await axios.delete(`http://localhost:5000/api/trip/${tripId}`, {
+      await axios.delete(`https://yatrify-backend.onrender.com/api/trip/${tripId}`, {
         headers: authHeaders,
       });
 
