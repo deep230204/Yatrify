@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 const { isMailConfigured, sendPasswordResetOtpEmail } = require("../config/mailer");
 
@@ -18,6 +19,31 @@ const buildAuthPayload = (user) => ({
     email: user.email,
   },
 });
+
+const migrateLegacyPasswordIfNeeded = async (user, plainTextPassword) => {
+  const hasModernPassword = Boolean(user.passwordHash && user.passwordSalt);
+
+  if (hasModernPassword) {
+    return hashPassword(plainTextPassword, user.passwordSalt) === user.passwordHash;
+  }
+
+  if (!user.password) {
+    return false;
+  }
+
+  const isLegacyPasswordValid = await bcrypt.compare(plainTextPassword, user.password);
+
+  if (!isLegacyPasswordValid) {
+    return false;
+  }
+
+  const passwordSalt = crypto.randomBytes(16).toString("hex");
+  user.passwordSalt = passwordSalt;
+  user.passwordHash = hashPassword(plainTextPassword, passwordSalt);
+  user.password = null;
+
+  return true;
+};
 
 const signup = async (req, res) => {
   try {
@@ -68,9 +94,9 @@ const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password." });
     }
 
-    const passwordHash = hashPassword(password, user.passwordSalt);
+    const isPasswordValid = await migrateLegacyPasswordIfNeeded(user, password);
 
-    if (passwordHash !== user.passwordHash) {
+    if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid email or password." });
     }
 
@@ -184,6 +210,7 @@ const resetPasswordWithOtp = async (req, res) => {
     const passwordSalt = crypto.randomBytes(16).toString("hex");
     user.passwordSalt = passwordSalt;
     user.passwordHash = hashPassword(password, passwordSalt);
+    user.password = null;
     user.passwordResetOtpHash = null;
     user.passwordResetOtpExpiresAt = null;
     user.sessionToken = generateToken();

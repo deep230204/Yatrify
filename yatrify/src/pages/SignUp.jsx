@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { setAuthData } from "../lib/auth";
+import { apiUrl, getApiErrorMessage } from "../lib/api";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Signup = () => {
 
     try {
       setIsSubmitting(true);
-      const response = await axios.post("https://yatrify-backend.onrender.com/api/auth/signup", {
+      const response = await axios.post(apiUrl("/api/auth/signup"), {
         name,
         email,
         password,
@@ -35,7 +36,7 @@ const Signup = () => {
       toast.success("Account created successfully");
       navigate("/create-trip", { replace: true });
     } catch (error) {
-      toast.error(error.response?.data?.message || "Signup failed");
+      toast.error(getApiErrorMessage(error, "Signup failed"));
     } finally {
       setIsSubmitting(false);
     }

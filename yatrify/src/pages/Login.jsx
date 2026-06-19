@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { setAuthData } from "../lib/auth";
+import { apiUrl, getApiErrorMessage } from "../lib/api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const Login = () => {
 
     try {
       setIsSubmitting(true);
-      const response = await axios.post("https://yatrify-backend.onrender.com/api/auth/login", {
+      const response = await axios.post(apiUrl("/api/auth/login"), {
         email,
         password,
       });
@@ -41,7 +42,7 @@ const Login = () => {
       toast.success("Login successful");
       navigate(location.state?.from || "/create-trip", { replace: true });
     } catch (error) {
-      toast.error(error.response?.data?.message || "Login failed");
+      toast.error(getApiErrorMessage(error, "Login failed"));
     } finally {
       setIsSubmitting(false);
     }

@@ -18,6 +18,7 @@ import {
   Wallet,
 } from "lucide-react";
 import { clearAuthData, getAuthToken } from "../lib/auth";
+import { apiUrl, getApiErrorMessage } from "../lib/api";
 
 const statCards = [
   {
@@ -121,7 +122,7 @@ const Dashboard = () => {
 
     try {
       setIsLoading(true);
-      const response = await axios.get("https://yatrify-backend.onrender.com/api/trip/mine", {
+      const response = await axios.get(apiUrl("/api/trip/mine"), {
         headers: authHeaders,
       });
 
@@ -138,7 +139,7 @@ const Dashboard = () => {
         return;
       }
 
-      toast.error(error.response?.data?.message || "Failed to load dashboard");
+      toast.error(getApiErrorMessage(error, "Failed to load dashboard"));
     } finally {
       setIsLoading(false);
     }
@@ -230,7 +231,7 @@ const Dashboard = () => {
     try {
       setSavingTripId(trip._id);
       const response = await axios.patch(
-        `https://yatrify-backend.onrender.com/api/trip/${trip._id}/save`,
+        apiUrl(`/api/trip/${trip._id}/save`),
         { isSaved: !trip.isSaved },
         { headers: authHeaders }
       );
@@ -243,7 +244,7 @@ const Dashboard = () => {
         return;
       }
 
-      toast.error(error.response?.data?.message || "Failed to update trip");
+      toast.error(getApiErrorMessage(error, "Failed to update trip"));
     } finally {
       setSavingTripId("");
     }
@@ -253,7 +254,7 @@ const Dashboard = () => {
     try {
       setSavingTripId(tripId);
       const response = await axios.patch(
-        `https://yatrify-backend.onrender.com/api/trip/${tripId}`,
+        apiUrl(`/api/trip/${tripId}`),
         { notes: noteDrafts[tripId] || "" },
         { headers: authHeaders }
       );
@@ -267,7 +268,7 @@ const Dashboard = () => {
         return;
       }
 
-      toast.error(error.response?.data?.message || "Failed to save notes");
+      toast.error(getApiErrorMessage(error, "Failed to save notes"));
     } finally {
       setSavingTripId("");
     }
@@ -277,7 +278,7 @@ const Dashboard = () => {
     try {
       setUpdatingStatusTripId(tripId);
       const response = await axios.patch(
-        `https://yatrify-backend.onrender.com/api/trip/${tripId}`,
+        apiUrl(`/api/trip/${tripId}`),
         { status },
         { headers: authHeaders }
       );
@@ -290,7 +291,7 @@ const Dashboard = () => {
         return;
       }
 
-      toast.error(error.response?.data?.message || "Failed to update trip status");
+      toast.error(getApiErrorMessage(error, "Failed to update trip status"));
     } finally {
       setUpdatingStatusTripId("");
     }
@@ -305,7 +306,7 @@ const Dashboard = () => {
 
     try {
       setDeletingTripId(tripId);
-      await axios.delete(`https://yatrify-backend.onrender.com/api/trip/${tripId}`, {
+      await axios.delete(apiUrl(`/api/trip/${tripId}`), {
         headers: authHeaders,
       });
 
@@ -347,7 +348,7 @@ const Dashboard = () => {
         return;
       }
 
-      toast.error(error.response?.data?.message || "Failed to delete trip");
+      toast.error(getApiErrorMessage(error, "Failed to delete trip"));
     } finally {
       setDeletingTripId("");
     }

@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import axios from "axios";
 import { toast } from "sonner";
 import { clearAuthData, getAuthData } from "../../lib/auth";
+import { apiUrl } from "../../lib/api";
 import {
   PremiumLogo,
   PremiumDashboardIcon,
@@ -42,7 +43,7 @@ const Header = () => {
     try {
       if (authData?.token) {
         await axios.post(
-          "https://yatrify-backend.onrender.com/api/auth/logout",
+          apiUrl("/api/auth/logout"),
           {},
           {
             headers: {

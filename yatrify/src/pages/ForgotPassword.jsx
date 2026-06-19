@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import axios from "axios";
 import { setAuthData } from "../lib/auth";
+import { apiUrl, getApiErrorMessage } from "../lib/api";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -28,15 +29,14 @@ const ForgotPassword = () => {
 
     try {
       setIsSubmitting(true);
-      const response = await axios.post(
-        "https://yatrify-backend.onrender.com/api/auth/forgot-password/request-otp",
-        { email }
-      );
+      const response = await axios.post(apiUrl("/api/auth/forgot-password/request-otp"), {
+        email,
+      });
 
       toast.success(response.data.message || "OTP sent to your email");
       setOtpSent(true);
     } catch (error) {
-      toast.error(error.response?.data?.message || "Unable to send OTP");
+      toast.error(getApiErrorMessage(error, "Unable to send OTP"));
     } finally {
       setIsSubmitting(false);
     }
@@ -57,16 +57,17 @@ const ForgotPassword = () => {
 
     try {
       setIsSubmitting(true);
-      const response = await axios.post(
-        "https://yatrify-backend.onrender.com/api/auth/forgot-password/reset",
-        { email, otp, password }
-      );
+      const response = await axios.post(apiUrl("/api/auth/forgot-password/reset"), {
+        email,
+        otp,
+        password,
+      });
 
       setAuthData(response.data);
       toast.success(response.data.message || "Password reset successful");
       navigate("/create-trip", { replace: true });
     } catch (error) {
-      toast.error(error.response?.data?.message || "Unable to reset password");
+      toast.error(getApiErrorMessage(error, "Unable to reset password"));
     } finally {
       setIsSubmitting(false);
     }

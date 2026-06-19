@@ -14,6 +14,7 @@ import html2canvas from "html2canvas";
 import axios from "axios";
 import { useState } from "react";
 import { clearAuthData, getAuthToken } from "../../lib/auth";
+import { apiUrl, getApiErrorMessage } from "../../lib/api";
 
 const ActionButtons = ({ tripData: propTripData }) => {
   const tripData = propTripData ||
@@ -32,7 +33,7 @@ const ActionButtons = ({ tripData: propTripData }) => {
     try {
       setIsSaving(true);
       const response = await axios.patch(
-        `https://yatrify-backend.onrender.com/api/trip/${tripData._id}/save`,
+        apiUrl(`/api/trip/${tripData._id}/save`),
         { isSaved: !tripData.isSaved },
         {
           headers: {
@@ -49,7 +50,7 @@ const ActionButtons = ({ tripData: propTripData }) => {
         clearAuthData();
       }
 
-      toast.error(error.response?.data?.message || "Failed to update saved trip");
+      toast.error(getApiErrorMessage(error, "Failed to update saved trip"));
     } finally {
       setIsSaving(false);
     }
@@ -190,7 +191,7 @@ const ActionButtons = ({ tripData: propTripData }) => {
       setShowAiLoading(true);
 
       const response = await axios.post(
-        "https://yatrify-backend.onrender.com/api/trip/generate",
+        apiUrl("/api/trip/generate"),
         {
           destination: tripData.destination,
           days: Number(tripData.days),
@@ -227,7 +228,7 @@ const ActionButtons = ({ tripData: propTripData }) => {
         return;
       }
 
-      toast.error(error.response?.data?.message || "Failed to regenerate trip");
+      toast.error(getApiErrorMessage(error, "Failed to regenerate trip"));
     }
   };
 

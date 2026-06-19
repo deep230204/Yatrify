@@ -18,6 +18,7 @@ import {
 import { toast } from "sonner";
 import axios from "axios";
 import { clearAuthData, getAuthToken } from "../lib/auth";
+import { apiUrl, getApiErrorMessage } from "../lib/api";
 
 
 const CreateTrip = () => {
@@ -142,7 +143,7 @@ const CreateTrip = () => {
       setShowAiLoading(true);
 
       const response = await axios.post(
-        "https://yatrify-backend.onrender.com/api/trip/generate",
+        apiUrl("/api/trip/generate"),
         {
           destination: formData.destination,
           days: Number(formData.noOfDays),
@@ -176,7 +177,7 @@ const CreateTrip = () => {
         return;
       }
 
-      toast.error(error.response?.data?.message || "Failed to generate trip");
+      toast.error(getApiErrorMessage(error, "Failed to generate trip"));
     }
   };
 
