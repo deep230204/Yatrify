@@ -4,6 +4,7 @@ import {
   Lock,
   Eye,
   EyeOff,
+  Plane,
   ArrowRight,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -61,7 +62,7 @@ const Login = () => {
             transition={{ duration: 0.2 }}
             className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-[28px] bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 shadow-[0_15px_40px_rgba(99,102,241,0.45)] sm:h-20 sm:w-20"
           >
-            <img src="/logo.png" alt="" className="h-full w-full object-cover" draggable="false" />
+            <Plane className="h-9 w-9 text-white" />
           </motion.div>
 
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">

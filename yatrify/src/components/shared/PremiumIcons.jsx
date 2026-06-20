@@ -1,26 +1,28 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Plane } from "lucide-react";
 
 /**
  * Premium Logo component.
- * Brand mark backed by the shared logo artwork.
+ * Clean brand mark with a simple plane badge and subtle hover lift.
  */
 export const PremiumLogo = () => {
   return (
     <motion.div
-      className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-[18px] bg-slate-50 shadow-[0_10px_30px_rgba(124,58,237,0.28)] ring-1 ring-white/15"
+      className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-[18px] bg-gradient-to-br from-violet-500 via-violet-600 to-fuchsia-600 shadow-[0_10px_30px_rgba(124,58,237,0.28)] ring-1 ring-white/15"
       whileHover={{ scale: 1.04, y: -1 }}
       transition={{ type: "spring", stiffness: 320, damping: 18 }}
       aria-hidden="true"
     >
-      <motion.img
-        src="/logo.png"
-        alt=""
-        className="h-full w-full object-cover"
-        draggable="false"
-        whileHover={{ scale: 1.01 }}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.32),transparent_38%)]" />
+      <div className="absolute left-2 top-2 h-4 w-4 rounded-full bg-white/10 blur-[1px]" />
+      <motion.div
+        className="relative"
+        whileHover={{ rotate: -12, y: -1 }}
         transition={{ type: "spring", stiffness: 280, damping: 16 }}
-      />
+      >
+        <Plane className="h-6 w-6 text-white drop-shadow-sm" />
+      </motion.div>
     </motion.div>
   );
 };

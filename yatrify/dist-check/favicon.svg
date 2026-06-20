@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" role="img" aria-label="Yatrify">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="6" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f172a" />
+      <stop offset="0.55" stop-color="#4f46e5" />
+      <stop offset="1" stop-color="#d946ef" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#bg)" />
+  <path
+    d="M16.5 15h4.7l2.8 5.7 2.8-5.7h4.7l-5.4 9v8.5h-4.2V24l-5.4-9z"
+    fill="#ffffff"
+  />
+  <circle cx="34.5" cy="14.5" r="2.2" fill="#fbbf24" />
+</svg>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { User, Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { User, Mail, Lock, Eye, EyeOff, Plane } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
@@ -97,7 +97,7 @@ const ForgotPassword = () => {
           whileHover={{ rotate: -8, scale: 1.05 }}
           className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-[28px] bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 shadow-lg sm:h-20 sm:w-20"
         >
-          <img src="/logo.png" alt="" className="h-full w-full object-cover" draggable="false" />
+          <Plane className="h-9 w-9 text-white" />
         </motion.div>
 
         <h1 className="text-center text-3xl font-bold text-slate-900 sm:text-4xl">
