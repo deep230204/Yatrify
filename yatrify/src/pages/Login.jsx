@@ -49,27 +49,27 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-purple-100 flex items-center justify-center px-4 py-10">
+    <div className="min-h-[100svh] bg-gradient-to-br from-slate-100 via-indigo-50 to-purple-100 flex items-center justify-center px-4 py-8 sm:py-10">
       <motion.div
         initial={{ opacity: 0, y: 30, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-lg rounded-[36px] border border-white/60 bg-white/90 p-8 sm:p-10 shadow-[0_25px_80px_rgba(99,102,241,0.15)] backdrop-blur-xl"
+        className="w-full max-w-lg rounded-[36px] border border-white/60 bg-white/90 p-6 sm:p-10 shadow-[0_25px_80px_rgba(99,102,241,0.15)] backdrop-blur-xl"
       >
         <div className="text-center mb-10">
           <motion.div
             whileHover={{ rotate: -8, scale: 1.05 }}
             transition={{ duration: 0.2 }}
-            className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-[28px] bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 shadow-[0_15px_40px_rgba(99,102,241,0.45)]"
+            className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-[28px] bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 shadow-[0_15px_40px_rgba(99,102,241,0.45)] sm:h-20 sm:w-20"
           >
             <Plane className="h-9 w-9 text-white" />
           </motion.div>
 
-          <h1 className="text-4xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Welcome Back
           </h1>
 
-          <p className="mt-3 text-base leading-relaxed text-slate-500">
+          <p className="mt-3 text-sm leading-relaxed text-slate-500 sm:text-base">
             Login to continue planning your dream trips with Yatrify.
           </p>
         </div>
@@ -88,7 +88,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="h-15 w-full rounded-2xl border border-slate-200 bg-white pl-12 pr-4 text-slate-800 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+                className="h-14 w-full rounded-2xl border border-slate-200 bg-white pl-12 pr-4 text-slate-800 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
               />
             </div>
           </div>
@@ -106,7 +106,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className="h-15 w-full rounded-2xl border border-slate-200 bg-white pl-12 pr-12 text-slate-800 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+                className="h-14 w-full rounded-2xl border border-slate-200 bg-white pl-12 pr-12 text-slate-800 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
               />
 
               <button
@@ -119,7 +119,7 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-between gap-4 text-sm">
+          <div className="flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
             <label className="flex items-center gap-2 text-slate-600">
               <input
                 type="checkbox"
@@ -128,12 +128,13 @@ const Login = () => {
               Remember me
             </label>
 
-           <button
-  type="button"
-  onClick={() => navigate("/forgot-password")}
-className="cursor-pointer font-medium text-indigo-600 transition-colors hover:text-indigo-700">
-  Forgot password?
-</button>
+            <button
+              type="button"
+              onClick={() => navigate("/forgot-password")}
+              className="cursor-pointer font-medium text-indigo-600 transition-colors hover:text-indigo-700"
+            >
+              Forgot password?
+            </button>
           </div>
 
           <button
@@ -148,14 +149,14 @@ className="cursor-pointer font-medium text-indigo-600 transition-colors hover:te
 
         <div className="mt-8 border-t border-slate-100 pt-6 text-center">
           <p className="text-sm text-slate-500">
-  Don&apos;t have an account?
-  <span
-    onClick={() => navigate("/signup")}
-    className="ml-1 cursor-pointer font-semibold text-indigo-600 transition-colors hover:text-indigo-700"
-  >
-    Sign Up
-  </span>
-</p>
+            Don&apos;t have an account?
+            <span
+              onClick={() => navigate("/signup")}
+              className="ml-1 cursor-pointer font-semibold text-indigo-600 transition-colors hover:text-indigo-700"
+            >
+              Sign Up
+            </span>
+          </p>
         </div>
       </motion.div>
     </div>

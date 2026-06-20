@@ -2,6 +2,10 @@ const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 const { isMailConfigured, sendPasswordResetOtpEmail } = require("../config/mailer");
+const {
+  isStrongPassword,
+  PASSWORD_POLICY_MESSAGE,
+} = require("../utils/passwordPolicy");
 
 const hashPassword = (password, salt) =>
   crypto.pbkdf2Sync(password, salt, 1000, 64, "sha512").toString("hex");
@@ -47,10 +51,18 @@ const migrateLegacyPasswordIfNeeded = async (user, plainTextPassword) => {
 
 const signup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, confirmPassword } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Name, email, and password are required." });
+    }
+
+    if (confirmPassword !== undefined && confirmPassword !== password) {
+      return res.status(400).json({ message: "Passwords do not match." });
+    }
+
+    if (!isStrongPassword(password)) {
+      return res.status(400).json({ message: PASSWORD_POLICY_MESSAGE });
     }
 
     const normalizedEmail = email.trim().toLowerCase();
@@ -176,7 +188,7 @@ const requestPasswordResetOtp = async (req, res) => {
 
 const resetPasswordWithOtp = async (req, res) => {
   try {
-    const { email, otp, password } = req.body;
+    const { email, otp, password, confirmPassword } = req.body;
 
     if (!email || !otp || !password) {
       return res
@@ -184,10 +196,12 @@ const resetPasswordWithOtp = async (req, res) => {
         .json({ message: "Email, OTP, and new password are required." });
     }
 
-    if (String(password).length < 6) {
-      return res
-        .status(400)
-        .json({ message: "Password must be at least 6 characters long." });
+    if (confirmPassword !== undefined && confirmPassword !== password) {
+      return res.status(400).json({ message: "Passwords do not match." });
+    }
+
+    if (!isStrongPassword(password)) {
+      return res.status(400).json({ message: PASSWORD_POLICY_MESSAGE });
     }
 
     const normalizedEmail = email.trim().toLowerCase();

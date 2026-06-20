@@ -1,3 +1,5 @@
+const dns = require("dns").promises;
+const net = require("net");
 const nodemailer = require("nodemailer");
 
 const parsePort = (value, fallback) => {
@@ -12,6 +14,7 @@ const getMailConfig = () => {
   const port = parsePort(process.env.SMTP_PORT, 587);
   const secure =
     process.env.SMTP_SECURE === "true" || port === 465;
+  const preferIpv4 = process.env.SMTP_PREFER_IPV4 !== "false";
   const from =
     process.env.MAIL_FROM?.trim() || user || "";
 
@@ -19,6 +22,7 @@ const getMailConfig = () => {
     host,
     port,
     secure,
+    preferIpv4,
     from,
     auth: user && pass ? { user, pass } : null,
   };
@@ -29,7 +33,36 @@ const isMailConfigured = () => {
   return Boolean(config.host && config.auth?.user && config.auth?.pass && config.from);
 };
 
-const createTransporter = () => {
+const resolveTransportHost = async (host, preferIpv4) => {
+  if (!host || !preferIpv4 || net.isIP(host)) {
+    return {
+      host,
+      tls: undefined,
+    };
+  }
+
+  try {
+    const { address } = await dns.lookup(host, { family: 4 });
+
+    return {
+      host: address,
+      tls: {
+        servername: host,
+      },
+    };
+  } catch (error) {
+    console.warn(
+      `SMTP IPv4 lookup failed for ${host}. Falling back to default DNS resolution: ${error.message}`
+    );
+
+    return {
+      host,
+      tls: undefined,
+    };
+  }
+};
+
+const createTransporter = async () => {
   const config = getMailConfig();
 
   if (!isMailConfigured()) {
@@ -38,16 +71,19 @@ const createTransporter = () => {
     );
   }
 
+  const resolvedTransport = await resolveTransportHost(config.host, config.preferIpv4);
+
   return nodemailer.createTransport({
-    host: config.host,
+    host: resolvedTransport.host,
     port: config.port,
     secure: config.secure,
     auth: config.auth,
+    tls: resolvedTransport.tls,
   });
 };
 
 const sendPasswordResetOtpEmail = async ({ to, otp, name }) => {
-  const transporter = createTransporter();
+  const transporter = await createTransporter();
   const { from } = getMailConfig();
   const recipientName = name || "Traveler";
 

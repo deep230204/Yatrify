@@ -35,7 +35,7 @@ const stats = [
 ];
 
 const Hero = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <section className="relative overflow-hidden bg-[#f7f8ff] px-4 sm:px-6 lg:px-8">
       {/* Background Gradient */}
@@ -96,7 +96,7 @@ const Hero = () => {
         <Briefcase className="h-8 w-8 text-yellow-400" />
       </motion.div>
 
-      <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-14 pt-28 pb-20 lg:grid-cols-2">
+      <div className="relative z-10 mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-10 pt-24 pb-16 sm:pt-28 sm:pb-20 lg:grid-cols-2 lg:gap-14">
         {/* Left Content */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           {/* Badge */}
@@ -104,7 +104,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/60 bg-white/80 px-7 py-3 text-sm font-semibold text-slate-700 shadow-xl backdrop-blur-xl"
+            className="mb-6 inline-flex max-w-full items-center gap-3 rounded-full border border-white/60 bg-white/80 px-5 py-3 text-xs font-semibold text-slate-700 shadow-xl backdrop-blur-xl sm:mb-8 sm:px-7 sm:text-sm"
           >
             <motion.div
               animate={{
@@ -121,7 +121,7 @@ const Hero = () => {
               <div className="relative h-3.5 w-3.5 rounded-full bg-violet-600" />
             </motion.div>
 
-            <span>AI-Powered Travel Agent v2.0</span>
+            <span className="whitespace-nowrap">AI-Powered Travel Agent v2.0</span>
           </motion.div>
 
           {/* Heading */}
@@ -129,7 +129,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="relative max-w-4xl text-5xl font-extrabold leading-tight tracking-tight sm:text-6xl md:text-7xl xl:text-8xl"
+            className="relative max-w-4xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl xl:text-7xl"
           >
             <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 bg-clip-text text-transparent">
               Design Your Dream
@@ -145,9 +145,9 @@ const Hero = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="mt-5 text-sm font-semibold uppercase tracking-[0.35em] text-violet-600 sm:text-base"
+            className="mt-5 text-xs font-semibold uppercase tracking-[0.28em] text-violet-600 sm:text-sm sm:tracking-[0.35em]"
           >
-            Travel Smarter • Go Further
+            Travel Smarter - Go Further
           </motion.p>
 
           {/* Description */}
@@ -155,7 +155,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mt-6 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg md:text-xl"
+            className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-600 sm:mt-6 sm:text-lg md:text-xl"
           >
             Tell us where you want to go, and let our advanced AI craft
             the perfect itinerary tailored to your budget, style, and
@@ -167,12 +167,12 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9 }}
-            className="mt-10 flex flex-col items-center gap-5 lg:items-start"
+            className="mt-8 flex flex-col items-center gap-5 lg:items-start"
           >
             <Button 
             onClick={()=>navigate('/create-trip')}
               size="xl"
-              className="group relative overflow-hidden rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 px-10 py-8 text-lg font-semibold text-white shadow-[0_15px_50px_rgba(99,102,241,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_70px_rgba(99,102,241,0.55)]"
+              className="group relative w-full max-w-xs overflow-hidden rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 px-7 py-5 text-base font-semibold text-white shadow-[0_15px_50px_rgba(99,102,241,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_70px_rgba(99,102,241,0.55)] sm:w-auto sm:max-w-none sm:px-10 sm:py-7 sm:text-lg"
             >
               <span className="absolute inset-0 overflow-hidden rounded-full">
                 <span className="absolute -left-10 top-0 h-full w-10 rotate-12 bg-white/20 blur-md transition-all duration-700 group-hover:left-[120%]" />
@@ -187,7 +187,7 @@ const Hero = () => {
             </Button>
 
             {/* Trusted By */}
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col items-center gap-3 sm:flex-row">
               <div className="flex -space-x-3">
                 <img
                   src="https://i.pravatar.cc/40?img=1"
@@ -206,7 +206,7 @@ const Hero = () => {
                 />
               </div>
 
-              <p className="text-sm text-slate-500">
+              <p className="text-center text-sm text-slate-500 sm:text-left">
                 Trusted by <span className="font-semibold text-slate-700">10K+</span> travelers
               </p>
             </div>
@@ -217,13 +217,13 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="mt-10 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-500 lg:justify-start"
+            className="mt-8 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-500 sm:mt-10 sm:gap-4 sm:text-sm lg:justify-start"
           >
             {stats.map((stat, index) => (
-              <div key={index} className="flex items-center gap-3">
+              <div key={index} className="flex items-center gap-2">
                 <span>{stat}</span>
                 {index !== stats.length - 1 && (
-                  <span className="hidden sm:block">•</span>
+                  <span className="hidden sm:block">|</span>
                 )}
               </div>
             ))}

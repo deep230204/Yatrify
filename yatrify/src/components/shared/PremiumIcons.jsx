@@ -4,68 +4,26 @@ import { Plane } from "lucide-react";
 
 /**
  * Premium Logo component.
- * On hover, the plane tilts and takes off, while interactive wind stream lines
- * slide across in the background.
+ * Clean brand mark with a simple plane badge and subtle hover lift.
  */
 export const PremiumLogo = () => {
   return (
-    <div className="relative flex items-center justify-center">
+    <motion.div
+      className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-[18px] bg-gradient-to-br from-violet-500 via-violet-600 to-fuchsia-600 shadow-[0_10px_30px_rgba(124,58,237,0.28)] ring-1 ring-white/15"
+      whileHover={{ scale: 1.04, y: -1 }}
+      transition={{ type: "spring", stiffness: 320, damping: 18 }}
+      aria-hidden="true"
+    >
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.32),transparent_38%)]" />
+      <div className="absolute left-2 top-2 h-4 w-4 rounded-full bg-white/10 blur-[1px]" />
       <motion.div
-        className="relative flex h-14 w-14 items-center justify-center rounded-[22px] bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 shadow-[0_10px_30px_rgba(99,102,241,0.35)] overflow-hidden"
-        whileHover="hover"
-        initial="initial"
+        className="relative"
+        whileHover={{ rotate: -12, y: -1 }}
+        transition={{ type: "spring", stiffness: 280, damping: 16 }}
       >
-        {/* Rapid wind streams in background on hover */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
-          variants={{
-            initial: { opacity: 0 },
-            hover: { opacity: 0.3 }
-          }}
-        >
-          <motion.div
-            className="absolute left-1 top-4 h-[1.5px] w-6 bg-white"
-            variants={{
-              initial: { x: -30, opacity: 0 },
-              hover: { x: [ -30, 50 ], opacity: [0, 1, 0] }
-            }}
-            transition={{ repeat: Infinity, duration: 0.6, ease: "linear" }}
-          />
-          <motion.div
-            className="absolute left-2 top-8 h-[1.5px] w-8 bg-white"
-            variants={{
-              initial: { x: -30, opacity: 0 },
-              hover: { x: [ -30, 50 ], opacity: [0, 1, 0] }
-            }}
-            transition={{ repeat: Infinity, duration: 0.6, ease: "linear", delay: 0.15 }}
-          />
-          <motion.div
-            className="absolute left-1 top-11 h-[1.5px] w-5 bg-white"
-            variants={{
-              initial: { x: -30, opacity: 0 },
-              hover: { x: [ -30, 50 ], opacity: [0, 1, 0] }
-            }}
-            transition={{ repeat: Infinity, duration: 0.6, ease: "linear", delay: 0.3 }}
-          />
-        </motion.div>
-
-        {/* Airplane taking off */}
-        <motion.div
-          variants={{
-            initial: { x: 0, y: 0, rotate: 0, scale: 1 },
-            hover: {
-              x: [0, 4, -1, 0],
-              y: [0, -4, 1, 0],
-              rotate: [0, -15, 3, 0],
-              scale: 1.1,
-              transition: { duration: 0.75, ease: "easeInOut" }
-            }
-          }}
-        >
-          <Plane className="h-6 w-6 text-white" />
-        </motion.div>
+        <Plane className="h-6 w-6 text-white drop-shadow-sm" />
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 

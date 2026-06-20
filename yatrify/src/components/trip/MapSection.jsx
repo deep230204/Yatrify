@@ -49,7 +49,7 @@ const MapSection = ({ tripData }) => {
           )}`}
           target="_blank"
           rel="noreferrer"
-          className="group/button inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 font-semibold text-slate-700 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:text-indigo-600 hover:shadow-xl"
+          className="group/button inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 font-semibold text-slate-700 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:text-indigo-600 hover:shadow-xl sm:w-auto"
         >
           Open Full Map
           <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/button:translate-x-1 group-hover/button:-translate-y-1" />
@@ -94,7 +94,7 @@ const MapSection = ({ tripData }) => {
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="w-full rounded-[28px]"
+              className="h-[320px] w-full rounded-[28px] sm:h-[450px]"
             />
           </div>
 

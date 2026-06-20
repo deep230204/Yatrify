@@ -169,17 +169,17 @@ const AttractionSection = ({ attractions = [] }) => {
       </div>
 
       {selectedAttraction && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4">
-          <div className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-4">
+          <div className="max-h-[92svh] w-full max-w-3xl overflow-y-auto rounded-3xl bg-white p-4 shadow-2xl sm:p-6">
             <img
               crossOrigin="anonymous"
               src={selectedAttraction.image}
               alt={selectedAttraction.name}
-              className="h-80 w-full rounded-2xl object-cover"
+              className="h-56 w-full rounded-2xl object-cover sm:h-80"
             />
 
             <div className="mt-6">
-              <h2 className="text-4xl font-bold text-slate-900">
+              <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
                 {selectedAttraction.name}
               </h2>
 

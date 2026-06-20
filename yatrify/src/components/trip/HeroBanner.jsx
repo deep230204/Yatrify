@@ -84,7 +84,7 @@ const HeroBanner = ({ tripData }) => {
       initial={{ opacity: 0, y: 40, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className="group relative overflow-hidden rounded-[42px] border border-white/15 bg-gradient-to-br from-slate-950 via-indigo-950 to-purple-950 p-8 text-white shadow-[0_25px_80px_rgba(79,70,229,0.35)] md:p-12"
+      className="group relative overflow-hidden rounded-[42px] border border-white/15 bg-gradient-to-br from-slate-950 via-indigo-950 to-purple-950 p-6 text-white shadow-[0_25px_80px_rgba(79,70,229,0.35)] sm:p-8 md:p-12"
     >
       <div className="absolute inset-0">
         <img
@@ -141,7 +141,7 @@ const HeroBanner = ({ tripData }) => {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="max-w-4xl text-4xl font-black leading-tight tracking-tight md:text-6xl lg:text-7xl"
+          className="max-w-4xl text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-6xl lg:text-7xl"
         >
           {tripData?.destination?.split(",").slice(0, 2).join(", ") ||
             "Your Dream Trip"}
@@ -162,7 +162,7 @@ const HeroBanner = ({ tripData }) => {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mt-10 flex flex-wrap gap-4"
+          className="mt-8 flex flex-wrap gap-3 sm:mt-10 sm:gap-4"
         >
           <motion.div
             whileHover={{ y: -6, scale: 1.03 }}

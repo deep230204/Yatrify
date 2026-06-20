@@ -355,17 +355,17 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,#e0e7ff,transparent_30%),radial-gradient(circle_at_top_right,#fde68a,transparent_22%),linear-gradient(180deg,#f8fafc_0%,#eef2ff_100%)] px-4 pt-32 pb-20">
+    <div className="min-h-[100svh] bg-[radial-gradient(circle_at_top_left,#e0e7ff,transparent_30%),radial-gradient(circle_at_top_right,#fde68a,transparent_22%),linear-gradient(180deg,#f8fafc_0%,#eef2ff_100%)] px-4 pt-28 pb-16 sm:pt-32 sm:pb-20">
       <div className="mx-auto max-w-7xl space-y-8">
         <section className="overflow-hidden rounded-[36px] border border-white/30 bg-slate-950 text-white shadow-[0_25px_100px_rgba(15,23,42,0.18)]">
-          <div className="relative px-8 py-10 md:px-12 md:py-14">
+          <div className="relative px-5 py-8 sm:px-8 md:px-12 md:py-14">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.35),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.22),transparent_22%)]" />
             <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-3xl">
                 <div className="mb-4 inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur-xl">
                   Your Yatrify Dashboard
                 </div>
-                <h1 className="text-4xl font-black tracking-tight md:text-6xl">
+                <h1 className="text-3xl font-black tracking-tight sm:text-4xl md:text-6xl">
                   Your travel command center
                 </h1>
                 <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
@@ -373,7 +373,7 @@ const Dashboard = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 text-sm text-white/80 sm:grid-cols-4">
+              <div className="grid grid-cols-1 gap-3 text-sm text-white/80 sm:grid-cols-2 xl:grid-cols-4">
                 <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4 backdrop-blur-xl">
                   <p className="text-white/50">Favorite Budget</p>
                   <p className="mt-1 font-semibold">{dashboardData.summary.favoriteBudget || "No trips yet"}</p>
@@ -426,19 +426,19 @@ const Dashboard = () => {
               </div>
               <button
                 onClick={() => navigate("/create-trip")}
-                className="rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+                className="w-full rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90 sm:w-auto"
               >
                 Plan New Trip
               </button>
             </div>
 
             <div className="mb-6 flex flex-col gap-4 rounded-[28px] border border-slate-200 bg-slate-50 p-4 lg:flex-row lg:items-center lg:justify-between">
-              <div className="flex flex-wrap gap-2">
+              <div className="flex gap-2 overflow-x-auto pb-1">
                 {tripTabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                    className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition ${
                       activeTab === tab.id
                         ? "bg-slate-900 text-white"
                         : "bg-white text-slate-600 hover:bg-slate-100"
@@ -522,7 +522,7 @@ const Dashboard = () => {
                           <div>
                             <h3 className="text-xl font-bold text-slate-900">{trip.destination}</h3>
                             <p className="text-sm text-slate-500">
-                              {trip.days} days • {trip.travelers}
+                              {trip.days} days | {trip.travelers}
                             </p>
                             {trip.aiProvider && trip.aiProvider !== "none" ? (
                               <div className="mt-3">
@@ -553,7 +553,7 @@ const Dashboard = () => {
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-3 gap-2 text-xs text-slate-600">
+                        <div className="grid grid-cols-1 gap-2 text-xs text-slate-600 sm:grid-cols-3">
                           <div className="rounded-2xl bg-slate-50 px-3 py-2">
                             <Hotel className="mb-1 h-4 w-4 text-slate-800" />
                             {trip.totalHotels || 0} Hotels
@@ -700,7 +700,7 @@ const Dashboard = () => {
                       />
                       <div className="min-w-0 flex-1">
                         <p className="truncate font-semibold text-slate-900">{trip.destination}</p>
-                        <p className="text-sm text-slate-500">{trip.days} days • {trip.budget}</p>
+                        <p className="text-sm text-slate-500">{trip.days} days | {trip.budget}</p>
                       </div>
                     </button>
                   ))

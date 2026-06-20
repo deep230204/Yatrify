@@ -289,7 +289,7 @@ const ActionButtons = ({ tripData: propTripData }) => {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex w-full flex-col gap-4 sm:flex-row sm:flex-wrap lg:w-auto">
               {actions.map((action, index) => {
                 const Icon = action.icon;
 
@@ -299,7 +299,7 @@ const ActionButtons = ({ tripData: propTripData }) => {
                     whileHover={{ y: -4, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={action.onClick}
-                    className={`group flex items-center gap-3 rounded-2xl px-5 py-4 font-semibold shadow-lg transition-all duration-300 ${action.className}`}
+                    className={`group flex w-full items-center justify-center gap-3 rounded-2xl px-5 py-4 font-semibold shadow-lg transition-all duration-300 sm:w-auto ${action.className}`}
                   >
                     <div
                       className={`flex h-10 w-10 items-center justify-center rounded-xl ${action.iconBg}`}
@@ -316,7 +316,7 @@ const ActionButtons = ({ tripData: propTripData }) => {
                 whileHover={{ y: -4, scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleRegeneratePlan}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 px-7 py-4 font-semibold text-white shadow-xl shadow-indigo-500/20 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/30"
+                className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 px-7 py-4 font-semibold text-white shadow-xl shadow-indigo-500/20 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/30 sm:w-auto"
               >
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_40%)]" />
 
@@ -337,12 +337,12 @@ const ActionButtons = ({ tripData: propTripData }) => {
 
       {showAiLoading && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-lg px-4">
-          <div className="w-full max-w-md rounded-[32px] border border-white/10 bg-white/10 p-8 text-center backdrop-blur-2xl shadow-[0_20px_80px_rgba(99,102,241,0.35)] animate-in fade-in zoom-in duration-500">
-            <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 shadow-[0_0_40px_rgba(139,92,246,0.5)]">
+          <div className="w-full max-w-md rounded-[32px] border border-white/10 bg-white/10 p-6 text-center backdrop-blur-2xl shadow-[0_20px_80px_rgba(99,102,241,0.35)] animate-in fade-in zoom-in duration-500 sm:p-8">
+            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 shadow-[0_0_40px_rgba(139,92,246,0.5)] sm:h-24 sm:w-24">
               <Plane className="h-10 w-10 text-white animate-spin" />
             </div>
 
-            <h2 className="text-2xl font-bold text-white flex items-center justify-center gap-1">
+            <h2 className="flex items-center justify-center gap-1 text-2xl font-bold text-white sm:text-3xl">
               AI is Planning Your Trip
               <span className="animate-bounce">.</span>
               <span className="animate-bounce [animation-delay:0.2s]">

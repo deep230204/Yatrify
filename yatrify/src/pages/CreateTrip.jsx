@@ -182,7 +182,7 @@ const CreateTrip = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-purple-100 flex items-center justify-center px-4 py-12">
+    <div className="min-h-[100svh] bg-gradient-to-br from-slate-100 via-indigo-50 to-purple-100 flex items-start justify-center px-4 py-6 sm:items-center sm:py-12">
       <div className="w-full max-w-4xl bg-white/80 backdrop-blur-xl rounded-[32px] shadow-2xl border border-white/40 overflow-hidden">
         <div className="h-2 bg-indigo-100 w-full">
           <div
@@ -191,7 +191,7 @@ const CreateTrip = () => {
           />
         </div>
 
-        <div className="grid lg:grid-cols-2 min-h-[700px]">
+        <div className="grid lg:min-h-[700px] lg:grid-cols-2">
           <div className="hidden lg:flex flex-col justify-center bg-gradient-to-br from-indigo-600 via-purple-600 to-fuchsia-600 text-white p-10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-72 h-72 bg-pink-400/20 rounded-full blur-3xl" />
@@ -267,28 +267,28 @@ const CreateTrip = () => {
                     </span>
                   </div>
 
-                  <h3 className="text-4xl font-bold text-gray-900 leading-tight">
+                  <h3 className="text-3xl font-bold text-gray-900 leading-tight sm:text-4xl">
                     Where&apos;s your next adventure?
                   </h3>
 
-                  <p className="text-gray-500 mt-4 text-lg">
+                  <p className="mt-4 text-base text-gray-500 sm:text-lg">
                     Select your destination and duration for a perfect trip.
                   </p>
                 </div>
 
                 <div className="space-y-7">
                   <div className="relative">
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                       <label className="block text-base font-semibold text-gray-800">
                         Destination
                       </label>
 
                       {/* Input Mode Selector Option */}
-                      <div className="flex bg-slate-100 p-1 rounded-xl gap-1">
+                      <div className="flex w-full flex-wrap gap-1 rounded-xl bg-slate-100 p-1 sm:w-auto">
                         <button
                           type="button"
                           onClick={() => setUseDropdown(true)}
-                          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 cursor-pointer ${
+                          className={`flex-1 rounded-lg px-3 py-1.5 text-xs font-bold transition-all duration-200 cursor-pointer sm:flex-none ${
                             useDropdown
                               ? "bg-white text-indigo-600 shadow-sm"
                               : "text-slate-500 hover:text-slate-950"
@@ -299,7 +299,7 @@ const CreateTrip = () => {
                         <button
                           type="button"
                           onClick={() => setUseDropdown(false)}
-                          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 cursor-pointer ${
+                          className={`flex-1 rounded-lg px-3 py-1.5 text-xs font-bold transition-all duration-200 cursor-pointer sm:flex-none ${
                             !useDropdown
                               ? "bg-white text-indigo-600 shadow-sm"
                               : "text-slate-500 hover:text-slate-950"
@@ -319,7 +319,7 @@ const CreateTrip = () => {
                             setFormData({ ...formData, destination: e.target.value });
                             setSearch(e.target.value);
                           }}
-                          className="w-full h-16 rounded-2xl border border-gray-200 bg-white pl-12 pr-10 text-lg outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-300 shadow-sm appearance-none cursor-pointer font-medium text-slate-800"
+                          className="w-full h-14 rounded-2xl border border-gray-200 bg-white pl-12 pr-10 text-base outline-none transition-all duration-300 shadow-sm appearance-none cursor-pointer font-medium text-slate-800 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 sm:h-16 sm:text-lg"
                         >
                           <option value="">-- Choose a Destination --</option>
                           {commonDestinations.map((dest) => (
@@ -344,7 +344,7 @@ const CreateTrip = () => {
                             handleSearch(value);
                           }}
                           placeholder="Search destination..."
-                          className="w-full h-16 rounded-2xl border border-gray-200 bg-white px-12 pr-4 text-lg outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-300 shadow-sm"
+                          className="w-full h-14 rounded-2xl border border-gray-200 bg-white px-12 pr-4 text-base outline-none transition-all duration-300 shadow-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 sm:h-16 sm:text-lg"
                         />
                       </div>
                     )}
@@ -484,16 +484,16 @@ const CreateTrip = () => {
         <DollarSign className="w-8 h-8 text-indigo-600" />
       </div>
 
-      <h3 className="text-4xl font-bold text-gray-900 leading-tight">
-        What&apos;s your budget?
-      </h3>
+                  <h3 className="text-3xl font-bold text-gray-900 leading-tight sm:text-4xl">
+                    What&apos;s your budget?
+                  </h3>
 
-      <p className="text-gray-500 mt-4 text-lg">
+      <p className="mt-4 text-base text-gray-500 sm:text-lg">
         We&apos;ll find spots that match your wallet.
       </p>
     </div>
 
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
       {budgetOptions.slice(0, 2).map((option) => {
         const Icon = option.icon;
 
@@ -522,7 +522,7 @@ const CreateTrip = () => {
               <Icon className="w-6 h-6" />
             </div>
 
-            <h4 className="text-lg font-semibold text-gray-900 leading-tight">
+            <h4 className="text-base font-semibold leading-tight text-gray-900 sm:text-lg">
               {option.title}
             </h4>
           </div>
@@ -567,10 +567,10 @@ const CreateTrip = () => {
       })}
     </div>
 
-    <div className="flex gap-4 mt-10">
+    <div className="mt-10 flex flex-col gap-4 sm:flex-row">
       <button
         onClick={() => setStep(1)}
-        className="w-1/2 h-14 rounded-2xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-100 hover:shadow-md transition-all duration-300"
+        className="h-14 w-full rounded-2xl border border-gray-300 font-semibold text-gray-700 transition-all duration-300 hover:bg-gray-100 hover:shadow-md sm:w-1/2"
       >
         Back
       </button>
@@ -578,7 +578,7 @@ const CreateTrip = () => {
       <button
         onClick={() => setStep(3)}
         disabled={!formData.budget}
-        className="w-1/2 h-14 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold hover:scale-[1.03] hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="h-14 w-full rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 font-semibold text-white transition-all duration-300 hover:scale-[1.03] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 sm:w-1/2"
       >
         Continue
       </button>
@@ -594,7 +594,7 @@ const CreateTrip = () => {
                     You
                   </div>
 
-                  <h3 className="text-4xl font-bold text-gray-900 leading-tight">
+                  <h3 className="text-3xl font-bold text-gray-900 leading-tight sm:text-4xl">
                     Who are you traveling with?
                   </h3>
 
@@ -603,7 +603,7 @@ const CreateTrip = () => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {travelerOptions.map((option) => {
                     const Icon = option.icon;
 
@@ -632,7 +632,7 @@ const CreateTrip = () => {
                           <Icon className="w-7 h-7" />
                         </div>
 
-                        <h4 className="text-xl font-semibold text-gray-900 mb-2 leading-tight">
+                        <h4 className="mb-2 text-lg font-semibold leading-tight text-gray-900 sm:text-xl">
                           {option.title}
                         </h4>
 
@@ -644,10 +644,10 @@ const CreateTrip = () => {
                   })}
                 </div>
 
-                <div className="flex gap-4 mt-8">
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                   <button
                     onClick={() => setStep(2)}
-                    className="w-1/2 h-14 rounded-2xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-100 hover:shadow-md transition-all duration-300"
+                    className="h-14 w-full rounded-2xl border border-gray-300 font-semibold text-gray-700 transition-all duration-300 hover:bg-gray-100 hover:shadow-md sm:w-1/2"
                   >
                     Back
                   </button>
@@ -655,7 +655,7 @@ const CreateTrip = () => {
                   <button
                     onClick={handleGeneratePlan}
                     disabled={!formData.traveler}
-                    className="w-1/2 h-14 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold hover:scale-[1.02] hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="h-14 w-full rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 sm:w-1/2"
                   >
                     Generate Plan
                   </button>

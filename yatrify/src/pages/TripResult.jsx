@@ -43,8 +43,8 @@ const TripResult = () => {
 
   return (
     <div id="trip-result-page">
-      <div className="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-purple-100 px-4 pt-32 pb-20">
-        <div className="mx-auto max-w-7xl space-y-8">
+      <div className="min-h-[100svh] bg-gradient-to-br from-slate-100 via-indigo-50 to-purple-100 px-4 pt-28 pb-16 sm:pt-32 sm:pb-20">
+        <div className="mx-auto max-w-7xl space-y-6 sm:space-y-8">
           <HeroBanner tripData={tripResult} />
 
           <div className="rounded-[32px] border border-white/40 bg-white/80 p-6 shadow-[0_18px_60px_rgba(15,23,42,0.08)] backdrop-blur-xl">
